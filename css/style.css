@@ -1,0 +1,46 @@
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+.btn{
+   padding: 10px 20px;
+   background-color:#fff;
+   color: teal;
+   border: 1px solid teal;
+}
+
+#postForm{
+   padding: 20px;
+}
+
+#postForm form{
+   display: grid;
+   grid-template-rows: 40px 40px;
+   row-gap: 10px;
+   border: 1px solid teal;
+   padding: 10px;
+}
+
+#postForm form button{
+   justify-self: end;
+
+}
+
+#postList{
+   display: grid;
+   row-gap: 20px;
+   padding: 20px;
+}
+
+#postList article{
+   border: 1px solid teal;
+   padding: 10px;
+   display: grid;
+   grid-template-columns: 10fr 2fr;
+}
+
+#postList article button{
+   justify-self: end;
+}

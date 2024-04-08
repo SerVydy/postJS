@@ -1,5 +1,10 @@
 let posts = [
    {
+      'id': 3,
+      'title': 'JS3',
+      'body': 'html'
+   },
+   {
       'id': 1,
       'title': 'JS1',
       'body': 'JavaScript1'
@@ -9,11 +14,7 @@ let posts = [
       'title': 'JS2',
       'body': 'JavaScript2'
    },
-   {
-      'id': 3,
-      'title': 'JS3',
-      'body': 'JavaScript3'
-   },
+   
 ]
 
 function removePost(post){
@@ -51,7 +52,7 @@ const postList = () => {
 
 }
 
-postList()
+
 
 const postForm = () => {
    const btn = document.querySelector('#postForm button')
@@ -71,4 +72,18 @@ const postForm = () => {
    })
 }
 
+const sortPost = () => {
+   const sort = document.querySelector('#sort select')
+
+   sort.addEventListener('change', () => {
+      posts.sort((post1, post2) => {
+         return post1[sort.value].localeCompare(post2[sort.value])
+      })
+      postList()
+   })
+   
+}
+
+postList()
 postForm()
+sortPost()

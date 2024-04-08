@@ -11,7 +11,7 @@
    border: 1px solid teal;
 }
 
-#postForm{
+section{
    padding: 20px;
 }
 
@@ -43,4 +43,10 @@
 
 #postList article button{
    justify-self: end;
+}
+
+#sort{
+   display: grid;
+   grid-template-rows: 40px;
+   justify-items: end;
 }

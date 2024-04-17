@@ -50,3 +50,19 @@ section{
    grid-template-rows: 40px;
    justify-items: end;
 }
+
+#paginator{
+   display: flex;
+   column-gap: 1px;
+}
+
+#paginator div{
+   border: 1px solid teal;
+   padding: 10px 20px;
+   cursor: pointer;
+}
+
+#paginator div.active{
+   background-color: teal;
+   color: white;
+}

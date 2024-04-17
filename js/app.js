@@ -1,21 +1,21 @@
-let posts = [
-   {
-      'id': 3,
-      'title': 'JS3',
-      'body': 'html'
-   },
-   {
-      'id': 1,
-      'title': 'JS1',
-      'body': 'JavaScript1'
-   },
-   {
-      'id': 2,
-      'title': 'JS2',
-      'body': 'JavaScript2'
-   },
+let posts = []
+let countPost = 0
+let limit = 15
+let page = 1
+let isPaginator = false
+
+const loadPosts = async () => {
+   const params = new URLSearchParams({_limit: limit, _page: page }).toString();
+   const respons = await fetch(`https://jsonplaceholder.typicode.com/posts?${params}`)
+   posts = await respons.json()
+   countPost = respons.headers.get('X-Total-Count')
+   console.log(countPost)
+   if (!isPaginator){
+      paginator()
+   }
    
-]
+   postList()
+}
 
 function removePost(post){
    posts = posts.filter(p => p.id !== post.id)
@@ -40,7 +40,7 @@ const postList = () => {
       
       section.appendChild(article)
 
-      title.innerHTML = `Title: <b>${post.title}</b>`
+      title.innerHTML = `ID - ${post.id} <br> Title: <b>${post.title}</b>`
       body.innerHTML = `Body: <b> ${post.body}</b>`
       
       article.appendChild(div)
@@ -83,6 +83,38 @@ const sortPost = () => {
    })
    
 }
+
+const paginator = () => {
+   isPaginator = true
+   let maxPages = Math.ceil(countPost/limit)
+   console.log(maxPages)
+   const section = document.querySelector('#paginator')
+   for (let index = 1; index <= maxPages; index++) {
+      let div = document.createElement('div')
+      div.innerHTML = index
+      if (index === page){
+         div.classList.add('active')
+      }
+      div.addEventListener('click', (event) => {
+         page = event.target.innerHTML
+         removeActivePaginator()
+         event.target.classList.add('active')
+         console.log(page)
+         loadPosts()
+      })
+      section.appendChild(div)
+   }
+   
+}
+
+function removeActivePaginator(){
+   const divs = document.querySelectorAll('#paginator div')
+   for (const div of divs) {
+      div.classList.remove('active')
+   }
+}
+
+loadPosts()
 
 postList()
 postForm()
